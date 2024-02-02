@@ -13,7 +13,6 @@ public class ProductService {
 
     public Product addProduct(ProductRequest request){
         Product product = new Product();
-        product.setId(request.getId());
         product.setProductName(request.getProductName());
         product.setProductDescription(request.getProductDescription());
         product.setImage(request.getImage());

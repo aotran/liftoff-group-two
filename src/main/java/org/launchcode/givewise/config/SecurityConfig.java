@@ -25,7 +25,7 @@ public class SecurityConfig {
         // this block of code determines which requests are authenticated
         http.authorizeRequests()
                 .requestMatchers(
-                        new AntPathRequestMatcher("/user/register"),new AntPathRequestMatcher("/product/register")).permitAll()
+                        new AntPathRequestMatcher("/user/register"),new AntPathRequestMatcher("/products/add")).permitAll()
                 .anyRequest().authenticated();
    /*
         http.formLogin(formLogin -> formLogin

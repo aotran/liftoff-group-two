@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class ProductRequest {
-    private Integer id;
     private String productName;
     private String productDescription;
     private String image;
