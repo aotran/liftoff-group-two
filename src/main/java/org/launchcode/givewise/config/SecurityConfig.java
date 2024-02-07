@@ -23,9 +23,9 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable());
 
         // this block of code determines which requests are authenticated
-    http.authorizeRequests()
+        http.authorizeRequests()
                 .requestMatchers(
-                        new AntPathRequestMatcher("/user/register")).permitAll()
+                        new AntPathRequestMatcher("/user/register"), new AntPathRequestMatcher("/products/add")).permitAll()
                 .anyRequest().authenticated();
    /*
         http.formLogin(formLogin -> formLogin
