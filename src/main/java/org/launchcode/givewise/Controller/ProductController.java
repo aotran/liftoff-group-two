@@ -36,6 +36,17 @@ public class ProductController {
         return ResponseEntity.ok(products);
     };
 
+    public ResponseEntity<Void> deleteProduct(@PathVariable Integer id){
+        try{
+            productService.deleteProduct(id);
+            log.info("Product deleted with id: {}", id);
+            return ResponseEntity.noContent().build();
+        }catch (Exception e) {
+            log.error("Error deleting product with id: {}", id, e);
+            return ResponseEntity.status(500).build();
+        }
+    }
+
 
 
 
