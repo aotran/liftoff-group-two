@@ -23,6 +23,7 @@ public class UserController {
             // Validate and process the data
             User user = userService.registerUser(userDto);
 
+            
         log.info("User created: {}", user);
             // Check if user registration was successful
                 return ResponseEntity.ok(user);
