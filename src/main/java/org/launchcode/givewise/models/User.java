@@ -27,5 +27,19 @@ public class User {
 
     @Column(name = "password")
     private String password;
+    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    private UserRole role;
+
+
+    @PostPersist
+    public void afterUserPersist() {
+        // Create a new UserRole and associate it with the user
+        UserRole role = new UserRole();
+        role.setUser(this);
+        role.setUserRole("USER");
+
+        // Set the UserRole in the User entity
+        this.setRole(role);
+    }
 
 }
