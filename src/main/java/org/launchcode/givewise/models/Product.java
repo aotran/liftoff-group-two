@@ -18,18 +18,18 @@ public class Product {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "product_name")
+    @Column(name = "product_name", length = 900)
     private String productName;
 
-    @Column(name = "product_description")
+    @Column(name = "product_description", length = 900)
     private String productDescription;
 
-    @Column(name = "image")
+    @Column(name = "image", length = 900)
     private String image;
 
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "company_website")
+    @Column(name = "company_website", length = 900)
     private String companyWebsite;
 }

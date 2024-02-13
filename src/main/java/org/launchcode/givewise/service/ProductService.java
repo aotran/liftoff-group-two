@@ -20,4 +20,8 @@ public class ProductService {
         product.setCompanyWebsite(request.getCompanyWebsite());
         return productRepo.save(product);
     }
+
+    public void deleteProduct(Integer id) {
+        productRepo.deleteById(id);
+    }
 }
