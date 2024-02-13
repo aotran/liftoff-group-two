@@ -36,7 +36,7 @@ public class User {
         // Create a new UserRole and associate it with the user
         UserRole role = new UserRole();
         role.setUser(this);
-        role.setUserRole("ADMIN");
+        role.setUserRole("USER");
 
         // Set the UserRole in the User entity
         this.setRole(role);
