@@ -29,7 +29,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok:1.18.22'
 	testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 	compileOnly 'org.projectlombok:lombok:1.18.22'
-
+	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-swagger-ui:3.0.0'
+	implementation 'io.springfox:springfox-oas:3.0.0'
+// Jakarta Validation
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
 }
 
 tasks.named('test') {
