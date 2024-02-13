@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -30,7 +32,8 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserRole role;
 
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorites> favorites;
     @PostPersist
     public void afterUserPersist() {
         // Create a new UserRole and associate it with the user

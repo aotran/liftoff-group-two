@@ -33,13 +33,14 @@ public class ProductController {
         log.info("Product added: {}", product);
         return ResponseEntity.ok(product);
     }
-    @GetMapping()
+    @GetMapping("/list")
     public ResponseEntity<List<Product>> getProduct(){
         List<Product> products = productRepository.getAllProducts();
 
         return ResponseEntity.ok(products);
     };
-
+    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteProduct(@PathVariable Integer id){
         try{
             productService.deleteProduct(id);
