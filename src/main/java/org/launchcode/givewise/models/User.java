@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -27,6 +29,21 @@ public class User {
 
     @Column(name = "password")
     private String password;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserRole role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Favorites> favorites;
+    @PostPersist
+    public void afterUserPersist() {
+        // Create a new UserRole and associate it with the user
+        UserRole role = new UserRole();
+        role.setUser(this);
+        role.setUserRole("USER");
+
+        // Set the UserRole in the User entity
+        this.setRole(role);
+    }
 
     public void setPhone(Object phone) {
     }

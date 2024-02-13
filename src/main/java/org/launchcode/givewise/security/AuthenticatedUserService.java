@@ -12,9 +12,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Component;
 
-@Component
+
 public class AuthenticatedUserService {
-    @Autowired
+  /*  @Autowired
     private UserRepository userDao;
 
     @Autowired
@@ -47,5 +47,5 @@ public class AuthenticatedUserService {
         sc.setAuthentication(result);
         session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, sc);
     }
-
+*/
 }
