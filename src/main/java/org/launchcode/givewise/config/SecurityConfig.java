@@ -12,11 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration
-@EnableWebSecurity
-@EnableMethodSecurity(prePostEnabled = true)
+
 public class SecurityConfig {
-    @Bean
+    /*@Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         // boilerplate code to disable csrf and authorize requests
@@ -42,7 +40,7 @@ public class SecurityConfig {
                 .logoutUrl("/auth/logout")
                 // this is the URL to go to after logout
                 .logoutSuccessUrl("/auth/home"));*/
-
+/*
         return http.build();
     }
     @Bean(name = "passwordEncoder")
@@ -53,5 +51,5 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
-    }
+    }*/
 }

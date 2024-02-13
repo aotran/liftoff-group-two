@@ -1,38 +1,34 @@
 package org.launchcode.givewise.controllers;
 
 
+import org.launchcode.givewise.models.User;
+import org.launchcode.givewise.models.data.UserRepository;
+import org.launchcode.givewise.request.AuthResponse;
+import org.launchcode.givewise.request.LoginRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    /*@PostMapping("/loginSubmit")
-    public ModelAndView loginSubmit(@RequestParam String username, @RequestParam String password) {
-        ModelAndView response = new ModelAndView();
-        if (!username.isEmpty() && !password.isEmpty()) {
-            response.setViewName("redirect:/home"); ; // Redirect to home page after successful login
-            return response;
-        } else {
-            response.addObject("error", true);
-              response.setViewName("redirect:/login"); // Redirect to login page with an error parameter
-            return response;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserRepository userRepo;
+    @PostMapping("/login")
+    public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
+        User user = userRepo.findByEmail(loginRequest.getEmail());
+        if (user!=null) {
+            if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+                return ResponseEntity.ok(new AuthResponse(user.getId(), user.getUserName(), user.getRole().getUserRole()));
+            }
         }
-
-}
-*/
-    @PostMapping("/home")
-    public ModelAndView home() {
-        ModelAndView response = new ModelAndView();
-            response.setViewName("redirect:/home");
-            return response;
-
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    @GetMapping("/login")
-    public ModelAndView login() {
-        ModelAndView response = new ModelAndView();
-        response.setViewName("/login");
-        return response;
-    }
 }

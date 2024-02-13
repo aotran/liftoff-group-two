@@ -27,7 +27,7 @@ public class User {
 
     @Column(name = "password")
     private String password;
-    @OneToOne(mappedBy = "users", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserRole role;
 
 
@@ -36,7 +36,7 @@ public class User {
         // Create a new UserRole and associate it with the user
         UserRole role = new UserRole();
         role.setUser(this);
-        role.setUserRole("USER");
+        role.setUserRole("ADMIN");
 
         // Set the UserRole in the User entity
         this.setRole(role);
