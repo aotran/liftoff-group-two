@@ -23,7 +23,6 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/register")
-
     public ResponseEntity<String> registerUser(@RequestBody UserRequest userDto) {
         if (userRepo.existsByEmail(userDto.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");

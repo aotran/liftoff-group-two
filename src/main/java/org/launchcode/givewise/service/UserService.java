@@ -17,12 +17,12 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     public User registerUser(UserRequest request) {
-        User user = new User();
-        user.setUserName(request.getUserName());
-        user.setEmail(request.getEmail().toLowerCase());
+        User newUser = new User();
+        newUser.setUserName(request.getUserName());
+        newUser.setEmail(request.getEmail().toLowerCase());
         String encoded = passwordEncoder.encode(request.getPassword());
-        user.setPassword(encoded);
-        user.setPhone(request.getPhone());
-        return userRepo.save(user);
+        newUser.setPassword(encoded);
+        newUser.setPhone(request.getPhone());
+        return userRepo.save(newUser);
     }
 }
