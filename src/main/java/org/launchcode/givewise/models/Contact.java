@@ -23,14 +23,5 @@ public class Contact {
     @Column(nullable = false)
     private String message;
 
-
-    public void setName(String name) {
-    }
-
-    public void setEmail(String email) {
-    }
-
-    public void setMessage(String message) {
-    }
 }
 
