@@ -11,4 +11,20 @@ public class UserRequest {
     private String phone;
     private String password;
     private String confirmPassword;
+
+    public Object getUserName() {
+        return userName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public CharSequence getPassword() {
+        return password;
+    }
+
+    public Object getPhone() {
+        return phone;
+    }
 }
