@@ -3,7 +3,6 @@ package org.launchcode.givewise.security;
 import lombok.RequiredArgsConstructor;
 import org.launchcode.givewise.models.User;
 import org.launchcode.givewise.models.data.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
