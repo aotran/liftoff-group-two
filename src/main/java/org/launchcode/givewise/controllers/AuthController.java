@@ -22,7 +22,7 @@ public class AuthController {
     private UserRepository userRepo;
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
-        User user = userRepo.findByEmail(loginRequest.getEmail());
+        User user = userRepo.findByEmailIgnoreCase(loginRequest.getEmail());
         if (user!=null) {
             if (passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
                 return ResponseEntity.ok(new AuthResponse(user.getId(), user.getUserName(), user.getRole().getUserRole()));
