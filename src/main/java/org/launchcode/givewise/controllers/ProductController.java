@@ -6,7 +6,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.launchcode.givewise.models.Product;
 import org.launchcode.givewise.models.data.ProductRepository;
 import org.launchcode.givewise.request.ProductRequest;
+
 import org.launchcode.givewise.service.MailjetService;
+
 import org.launchcode.givewise.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,6 @@ import static org.launchcode.givewise.config.SwaggerConfig.BASIC_AUTH_SECURITY_S
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-
 
     @Autowired
     private MailjetService mailjetService;
@@ -57,3 +58,4 @@ public class ProductController {
         }
     }
 }
+
