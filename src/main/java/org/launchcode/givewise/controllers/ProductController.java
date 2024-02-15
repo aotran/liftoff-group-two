@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import static org.launchcode.givewise.config.SwaggerConfig.BASIC_AUTH_SECURITY_SCHEME;
-   @Slf4j
-    @RestController
-    @RequestMapping("/products")
-    public class ProductController {
+@Slf4j
+@RestController
+@RequestMapping("/products")
+public class ProductController {
 
         @Autowired
         private ProductService productService;

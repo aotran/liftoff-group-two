@@ -15,6 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
         @Query("SELECT p From Product p")
         List<Product> getAllProducts();
 //        @Override
-//       // @Query("SELECT p FROM Product p WHERE p.id = :selectedId")
-//        Optional<Product> findById(Integer id);
+//        @Query("SELECT p FROM Product p WHERE p.id = :selectedId")
+//        public Product findById(Integer id);
 }
