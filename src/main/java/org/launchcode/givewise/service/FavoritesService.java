@@ -14,7 +14,9 @@ public class FavoritesService {
     @Autowired
     private FavoritesRepository favoritesRepository;
 
+
+
+}
+
 //    public List<Favorites> getFavoritesByUserId(Integer userId){
 //    return favoritesRepository.findByUserId(userId);
-//    }
-}
