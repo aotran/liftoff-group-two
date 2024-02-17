@@ -37,10 +37,22 @@ public class FavoriteController {
     }
 
 
+//    @GetMapping("/display/{userId}")
+//    public ResponseEntity<List<Favorites>> getFavoritesByUserId(@PathVariable Integer userId){
+//        try{
+//            List<Favorites> favorites = favoritesService.findFavoritesWithProductDetails(userId);
+//            return new ResponseEntity<>(favorites, HttpStatus.OK);
+//        } catch (Exception e){
+//            e.printStackTrace();
+//            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//
+//    }
+
     @GetMapping("/display/{userId}")
-    public ResponseEntity<List<Favorites>> getFavoritesByUserId(@PathVariable Integer userId){
+    public ResponseEntity<List<Product>> getFavoritesByUserId(@PathVariable Integer userId){
         try{
-            List<Favorites> favorites = favoritesService.findFavoritesWithProductDetails(userId);
+            List<Product> favorites = favoritesService.userFavProduct(userId);
             return new ResponseEntity<>(favorites, HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
@@ -61,6 +73,19 @@ public class FavoriteController {
 //            return ResponseEntity.status(500).build();
 //        }
 //    }
+
+    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<Void> deleteFavorite( @PathVariable Integer productId) {
+        try {
+            favoritesService.deleteFavorite(productId);
+            log.info("Favorite deleted with productId: {}", productId);
+            return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            log.error("Error deleting Favorite with productId: {}", productId, e);
+            return ResponseEntity.status(500).build();
+        }
+    }
 
 
 }
