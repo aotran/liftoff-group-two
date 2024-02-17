@@ -35,9 +35,27 @@ public class FavoritesService {
         return favoritesRepo.save(favorites);
     }
 
-//    public List<Favorites> getFavoritesByUserId(Integer userId) {
-//        return favoritesRepo.findByUserId(userId);
+    public List<Favorites> findFavoritesWithProductDetails(Integer userId){
+
+        List<Favorites> favorites = favoritesRepo.findByUserId(userId);
+
+        for (Favorites favorite: favorites
+             ) { Integer productId = favorite.getProduct().getId();
+            Product product = productRepository.findById(productId).orElse(null);
+
+            if (product != null) {
+                favorite.setProduct(product);
+            }
+        }
+        //System.out.println("Favorites with Product Details: " + favorites);
+        return favorites;
+
+        }
+
+//    public void deleteFavorite(Integer id) {
+//        favoritesRepo.deleteById(id);
 //    }
+
 
 }
 
