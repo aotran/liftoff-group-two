@@ -17,11 +17,15 @@ public class Favorites {
     @Column(name = "id")
     private Integer id;
 
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 }

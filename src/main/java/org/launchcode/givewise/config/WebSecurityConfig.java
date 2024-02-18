@@ -26,8 +26,8 @@ public class WebSecurityConfig {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
 
-                        .requestMatchers("/products/add","/products/delete", "/favorites/add").hasAuthority(ADMIN)
-                        .requestMatchers("/favorites/add").hasAuthority(USER)
+                        .requestMatchers("/products/add","/products/delete/**", "/favorites/add", "/favorites/display/**", "favorites/delete/**").hasAuthority(ADMIN)
+                        .requestMatchers("/favorites/add","/favorites/display/**", "favorites/delete/**").hasAuthority(USER)
 
                         .requestMatchers("/user/register", "/auth/**","/products/list", "/api/contact/submit").permitAll()
                         .requestMatchers("/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
