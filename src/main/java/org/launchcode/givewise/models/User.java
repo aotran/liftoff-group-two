@@ -1,5 +1,6 @@
 package org.launchcode.givewise.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class User {
     private String email;
 
     @Column(name = "phone")
-    private Integer phone;
+    private String phone;
 
     @Column(name = "password")
     private String password;
@@ -33,6 +34,7 @@ public class User {
     private UserRole role;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Favorites> favorites;
 
     @PostPersist
