@@ -33,9 +33,8 @@ public class ProductController {
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody ProductRequest productDto){
         Product product = productService.addProduct(productDto);
-        //mailjetService.sendEmail("haripriyamnair1992@gmail.com", "New Product Added", "A new product has been added. Check it out!");
-
         log.info("Product added: {}", product);
+      //  mailjetService.notifySubscriberOnNewProduct(product);
         return ResponseEntity.ok(product);
     }
     @GetMapping("/list")
