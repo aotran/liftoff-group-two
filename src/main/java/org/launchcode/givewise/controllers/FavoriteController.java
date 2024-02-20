@@ -13,7 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import static org.launchcode.givewise.config.SwaggerConfig.BASIC_AUTH_SECURITY_SCHEME;
 
@@ -61,6 +64,8 @@ public class FavoriteController {
 
     }
 
+
+
 //    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
 //    @DeleteMapping("/delete/{id}")
 //    public ResponseEntity<Void> deleteFavorite(@PathVariable Integer id){
@@ -74,18 +79,40 @@ public class FavoriteController {
 //        }
 //    }
 
+//    @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
+//    @DeleteMapping("/delete/{productId}")
+//    public ResponseEntity<Void> deleteFavorite( @PathVariable Integer productId) {
+//        try {
+//            favoritesService.deleteFavorite(productId);
+//            log.info("Favorite deleted with productId: {}", productId);
+//            return ResponseEntity.noContent().build();
+//        } catch (Exception e) {
+//            log.error("Error deleting Favorite with productId: {}", productId, e);
+//            return ResponseEntity.status(500).build();
+//        }
+//    }
+
     @Operation(security = {@SecurityRequirement(name = BASIC_AUTH_SECURITY_SCHEME)})
-    @DeleteMapping("/delete/{productId}")
-    public ResponseEntity<Void> deleteFavorite( @PathVariable Integer productId) {
+    @DeleteMapping("/delete/{userId}/{productId}")
+    public ResponseEntity<Void> deleteFavorite(@PathVariable Integer userId, @PathVariable Integer productId) {
         try {
-            favoritesService.deleteFavorite(productId);
-            log.info("Favorite deleted with productId: {}", productId);
-            return ResponseEntity.noContent().build();
+            boolean deleted = favoritesService.deleteFavorite(userId, productId);
+
+            if (deleted) {
+                log.info("Favorite deleted with userId: {} and productId: {}", userId, productId);
+                return ResponseEntity.noContent().build();
+            } else {
+                log.warn("Favorite not found with userId: {} and productId: {}", userId, productId);
+                return ResponseEntity.notFound().build();
+            }
         } catch (Exception e) {
-            log.error("Error deleting Favorite with productId: {}", productId, e);
+            log.error("Error deleting Favorite with userId: {} and productId: {}", userId, productId, e);
             return ResponseEntity.status(500).build();
         }
     }
+
+
+
 
 
 }
