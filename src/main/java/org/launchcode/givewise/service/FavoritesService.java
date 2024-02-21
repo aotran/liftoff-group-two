@@ -90,6 +90,12 @@ public class FavoritesService {
         }
     }
 
+    public boolean isProductInFavorites(Integer userId, Integer productId) {
+        // Check if the combination of userId and productId exists in the favorites
+        // You need to implement this logic based on your data model and database setup
+        // This is just a placeholder, and you should replace it with your actual implementation
+        return favoritesRepo.existsByUserIdAndProductId(userId, productId);
+    }
 
 }
 

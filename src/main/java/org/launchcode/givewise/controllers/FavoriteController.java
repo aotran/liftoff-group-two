@@ -111,7 +111,15 @@ public class FavoriteController {
         }
     }
 
-
+    @GetMapping("/check/{userId}/{productId}")
+    public ResponseEntity<Map<String, Boolean>> checkIfProductInFavorites(
+            @PathVariable Integer userId,
+            @PathVariable Integer productId
+    ) {
+        boolean exists = favoritesService.isProductInFavorites(userId, productId);
+        Map<String, Boolean> response = Collections.singletonMap("exists", exists);
+        return ResponseEntity.ok(response);
+    }
 
 
 
