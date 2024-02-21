@@ -28,7 +28,7 @@ public class SubscriptionController {
        /* boolean isValid = subscriptionService.validateAndSubscribe(subDto.getEmail());
 
         if (isValid) {
-             return ResponseEntity.status(HttpStatus.CREATED).body("Subscribed successfully")
+             return ResponseEntity.status(HttpStatus.CREATED).body("Subscribed successfully");
         } */else {
             return ResponseEntity.status(900).body("Invalid email address.");
         }
