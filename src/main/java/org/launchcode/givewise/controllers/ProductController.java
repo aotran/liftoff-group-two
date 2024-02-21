@@ -35,6 +35,7 @@ public class ProductController {
     public ResponseEntity<Product> addProduct(@RequestBody ProductRequest productDto) {
         Product product = productService.addProduct(productDto);
         log.info("Product added: {}", product);
+        //mailjetService.notifySubscriberOnNewProduct(product);
         return ResponseEntity.ok(product);
     }
 
