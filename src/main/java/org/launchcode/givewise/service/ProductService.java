@@ -6,6 +6,9 @@ import org.launchcode.givewise.request.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ProductService {
     @Autowired
@@ -24,4 +27,14 @@ public class ProductService {
     public void deleteProduct(Integer id) {
         productRepo.deleteById(id);
     }
+
+    public List<Product> searchProductsByCharacter(String searchTerm) {
+        List<Product> allProducts = productRepo.findAll();
+
+        // Filtering products whose names start with the specified character
+        return allProducts.stream()
+                .filter(product -> product.getProductName().toLowerCase().contains(searchTerm.toLowerCase()))
+                .collect(Collectors.toList());
+    }
 }
+

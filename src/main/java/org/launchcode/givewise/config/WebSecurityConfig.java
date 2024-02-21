@@ -26,8 +26,8 @@ public class WebSecurityConfig {
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers("/products/add","/products/delete/**"  ).hasAuthority(ADMIN)
-                        .requestMatchers("/favorites/add","/favorites/display/**", "favorites/delete/**").hasAnyAuthority(ADMIN, USER)
-                        .requestMatchers("/user/register", "/auth/**","/products/list", "/api/contact/submit","/api/subscriptions/validate").permitAll()
+                        .requestMatchers("/favorites/add","/favorites/display/**", "favorites/delete/**", "favorites/check/**").hasAnyAuthority(ADMIN, USER)
+                        .requestMatchers("/user/register", "/auth/**","/products/list", "/api/contact/submit","/products/search/**","/api/subscriptions/validate").permitAll()
                         .requestMatchers("/", "/error", "/csrf", "/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults())

@@ -13,4 +13,8 @@ public interface FavoritesRepository extends JpaRepository<Favorites, Integer> {
     //List<Favorites> findByProductId(Integer productId);
 
     Favorites findByProductId( Integer productId);
+
+    boolean existsByUserIdAndProductId(Integer userId, Integer productId);
+
+    Favorites findByUserIdAndProductId(Integer userId, Integer productId);
 }

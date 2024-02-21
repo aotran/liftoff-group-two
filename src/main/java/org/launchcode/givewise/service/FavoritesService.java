@@ -11,6 +11,7 @@ import org.launchcode.givewise.request.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -74,17 +75,27 @@ public class FavoritesService {
     // second we find the product details in the product repository
     // third, we add it to a list, and return that list of products
 
-    public void deleteFavorite( Integer productId) {
+
+
+    public boolean deleteFavorite(Integer userId, Integer productId) {
         // Find the favorite based on userId and productId
-        Favorites favorite = favoritesRepo.findByProductId(productId);
+        Favorites favorite = favoritesRepo.findByUserIdAndProductId(userId, productId);
 
         if (favorite != null) {
             // Remove the favorite
             favoritesRepo.delete(favorite);
+            return true; // Deletion successful
+        } else {
+            return false; // Favorite not found
         }
-        // If the favorite doesn't exist, you can handle it as per your requirements, e.g., throw an exception or log a message.
     }
 
+    public boolean isProductInFavorites(Integer userId, Integer productId) {
+        // Check if the combination of userId and productId exists in the favorites
+        // You need to implement this logic based on your data model and database setup
+        // This is just a placeholder, and you should replace it with your actual implementation
+        return favoritesRepo.existsByUserIdAndProductId(userId, productId);
+    }
 
 }
 
